@@ -677,7 +677,7 @@ Preferences._readFromStorage = function (prefObj) {
 
   function renderProgress() {
     var progressContainer = document.getElementById('mozPrintCallback-shim');
-    if (canvases) {
+    if (canvases && canvases.length) {
       var progress = Math.round(100 * index / canvases.length);
       var progressBar = progressContainer.querySelector('progress');
       var progressPerc = progressContainer.querySelector('.relative-progress');
@@ -1853,6 +1853,10 @@ var PDFHistory = (function () {
       window.addEventListener('presentationmodechanged', function(e) {
         self.isViewerInPresentationMode = !!e.detail.active;
       });
+    },
+
+    clearHistoryState: function pdfHistory_clearHistoryState() {
+      this._pushOrReplaceState(null, true);
     },
 
     _isStateObjectDefined: function pdfHistory_isStateObjectDefined(state) {
@@ -6586,12 +6590,16 @@ var PDFViewerApplication = {
       if (!PDFJS.disableHistory && !self.isViewerEmbedded) {
         // The browsing history is only enabled when the viewer is standalone,
         // i.e. not when it is embedded in a web page.
-        if (!self.preferenceShowPreviousViewOnLoad && window.history.state) {
-          window.history.replaceState(null, '');
+        if (!self.preferenceShowPreviousViewOnLoad) {
+          self.pdfHistory.clearHistoryState();
         }
         self.pdfHistory.initialize(self.documentFingerprint);
-        self.initialDestination = self.pdfHistory.initialDestination;
-        self.initialBookmark = self.pdfHistory.initialBookmark;
+
+        if (self.pdfHistory.initialDestination) {
+          self.initialDestination = self.pdfHistory.initialDestination;
+        } else if (self.pdfHistory.initialBookmark) {
+          self.initialBookmark = self.pdfHistory.initialBookmark;
+        }
       }
 
       store.initializedPromise.then(function resolved() {
@@ -6855,7 +6863,7 @@ var PDFViewerApplication = {
 
     var alertNotReady = false;
     var i, ii;
-    if (!this.pagesCount) {
+    if (!this.pdfDocument || !this.pagesCount) {
       alertNotReady = true;
     } else {
       for (i = 0, ii = this.pagesCount; i < ii; ++i) {
