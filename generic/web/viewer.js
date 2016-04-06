@@ -35,10 +35,10 @@ var PAGE_NUMBER_LOADING_INDICATOR = 'visiblePageIsLoading';
 var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 
 function configure(PDFJS) {
-  PDFJS.imageResourcesPath = './images/';
-  PDFJS.workerSrc = '../build/pdf.worker.js';
-  PDFJS.cMapUrl = '../web/cmaps/';
-  PDFJS.cMapPacked = true;
+  PDFJS.imageResourcesPath = PDFJS.imageResourcesPath || './images/';
+  PDFJS.workerSrc = PDFJS.workerSrc || '../build/pdf.worker.js';
+  PDFJS.cMapUrl = PDFJS.cMapUrl || '../web/cmaps/';
+  PDFJS.cMapPacked = PDFJS.cMapPacked || true;
 }
 
 var mozL10n = document.mozL10n || document.webL10n;
