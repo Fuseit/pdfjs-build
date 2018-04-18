@@ -1,12 +1,11 @@
 {
     "name": "pdfjs-build",
-    "version": "1.7.351",
+    "version": "2.0.491",
     "homepage": "https://github.com/Fuseit/pdfjs-build",
     "authors": [
         "Ivan Garmatenko  <igarmatenko@sphereconsultinginc.com>"
     ],
     "description": "Build of Mozilla's pdf.js library",
-    "main": "pdf.js",
     "keywords": [
         "pdf.js",
         "pdfjs",
