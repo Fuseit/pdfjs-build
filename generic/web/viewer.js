@@ -108,7 +108,7 @@ var _pdfjsLib = __webpack_require__(1);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var CSS_UNITS = 96.0 / 72.0;
-var DEFAULT_SCALE_VALUE = 'auto';
+var DEFAULT_SCALE_VALUE = 'page-width';
 var DEFAULT_SCALE = 1.0;
 var MIN_SCALE = 0.10;
 var MAX_SCALE = 10.0;
@@ -3364,6 +3364,7 @@ var defaultOptions = {
   }
 };
 var userOptions = Object.create(null);
+userOptions = CUSTOM_PREFERENCES;
 
 var AppOptions = function () {
   function AppOptions() {
