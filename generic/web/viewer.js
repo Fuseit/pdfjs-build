@@ -3516,7 +3516,7 @@ var defaultOptions = {
     kind: OptionKind.VIEWER
   },
   externalLinkTarget: {
-    value: 0,
+    value: 2,
     kind: OptionKind.VIEWER
   },
   imageResourcesPath: {
