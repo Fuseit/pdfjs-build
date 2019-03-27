@@ -5214,7 +5214,7 @@ var defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: '../web/cmaps/',
+    value: CUSTOM_PREFERENCES.cMapUrl,
     kind: OptionKind.API
   },
   disableAutoFetch: {
